@@ -11,7 +11,6 @@ using UnityEngine;
 using System.Reflection;
 using Colossal.IO.AssetDatabase.Internal;
 
-
 namespace SilenceXP
 {
     public partial class Mod : GameSystemBase, IMod
