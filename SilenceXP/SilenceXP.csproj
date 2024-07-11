@@ -17,6 +17,9 @@
 		<Reference Include="0Harmony">
 		  <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\BepInEx\core\0Harmony.dll</HintPath>
 		</Reference>
+		<Reference Include="0Harmony20">
+		  <HintPath>..\..\..\..\Downloads\BepInEx_win_x64_5.4.23.2\BepInEx\core\0Harmony20.dll</HintPath>
+		</Reference>
 		<Reference Include="BepInEx">
 		  <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities Skylines II\BepInEx\core\BepInEx.dll</HintPath>
 		</Reference>
