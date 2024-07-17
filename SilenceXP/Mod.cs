@@ -34,7 +34,8 @@ namespace SilenceXP
             // Actual method patching
             Harmony.CreateAndPatchAll(typeof(Mod));
             Harmony.GetAllPatchedMethods().ForEach(m => {
-                log.Info($"Patched: {m.Name}");
+                if (m.GetType() == typeof(Mod))
+                    log.Info($"Patched: {m.Name}");
             });
         }
 
