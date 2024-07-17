@@ -4,11 +4,7 @@ using Game;
 using Game.Modding;
 using Game.SceneFlow;
 using HarmonyLib;
-using static Game.Rendering.Debug.RenderPrefabRenderer;
 using Unity.Entities;
-using HarmonyLib.Tools;
-using UnityEngine;
-using System.Reflection;
 using Colossal.IO.AssetDatabase.Internal;
 
 namespace SilenceXP
@@ -38,7 +34,7 @@ namespace SilenceXP
             // Actual method patching
             Harmony.CreateAndPatchAll(typeof(Mod));
             Harmony.GetAllPatchedMethods().ForEach(m => {
-                log.Warn($"Patched: {m.Name}");
+                log.Info($"Patched: {m.Name}");
             });
         }
 

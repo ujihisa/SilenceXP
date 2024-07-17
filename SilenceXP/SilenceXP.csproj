@@ -17,9 +17,6 @@
 		<Reference Include="0Harmony">
 		  <HintPath>..\..\..\..\Downloads\BepInEx_win_x64_5.4.23.2\BepInEx\core\0Harmony.dll</HintPath>
 		</Reference>
-		<Reference Include="BepInEx">
-		  <HintPath>..\..\..\..\Downloads\BepInEx_win_x64_5.4.23.2\BepInEx\core\BepInEx.dll</HintPath>
-		</Reference>
 		<Reference Include="Game">
 			<Private>false</Private>
 		</Reference>
