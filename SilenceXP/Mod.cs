@@ -38,7 +38,7 @@ namespace SilenceXP
             // Actual method patching
             Harmony.CreateAndPatchAll(typeof(Mod));
             Harmony.GetAllPatchedMethods().ForEach(m => {
-                log.Warn($"Patched: {m.Name}");
+                log.Info($"Patched: {m.Name}");
             });
         }
 
@@ -67,7 +67,7 @@ namespace SilenceXP
             log.Debug("PatchedAddMessage");
             var mod = __instance.World.GetExistingSystemManaged<SilenceXP.Mod>();
             if (mod == null) {
-                log.Warn("mod does not exist");
+                log.Info("mod does not exist");
                 return true;
             }
             log.Debug($"mod.Setting.Toggle: {mod.Setting.Toggle}");
