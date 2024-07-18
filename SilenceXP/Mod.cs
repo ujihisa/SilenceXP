@@ -9,14 +9,16 @@ using Colossal.IO.AssetDatabase.Internal;
 
 namespace SilenceXP
 {
-    public partial class Mod : GameSystemBase, IMod
+    public partial class Mod : IMod
     {
         public static ILog log = LogManager.GetLogger($"{nameof(SilenceXP)}.{nameof(Mod)}").SetShowsErrorsInUI(false);
         private Setting m_Setting;
+        public static Mod Instance { get; private set; }
 
         public void OnLoad(UpdateSystem updateSystem)
         {
             log.Info(nameof(OnLoad));
+            Instance = this;
 
             if (GameManager.instance.modManager.TryGetExecutableAsset(this, out var asset))
                 log.Info($"Current mod asset at {asset.path}");
@@ -26,10 +28,6 @@ namespace SilenceXP
             GameManager.instance.localizationManager.AddSource("en-US", new LocaleEN(m_Setting));
 
             AssetDatabase.global.LoadSettings(nameof(SilenceXP), m_Setting, new Setting(this));
-
-            // Add yourself, so Harmonyx prefix can find your settings.
-            // If you can directly refer the setting that would be even better though...
-            World.DefaultGameObjectInjectionWorld.AddSystemManaged<Mod>(this);
 
             // Actual method patching
             Harmony.CreateAndPatchAll(typeof(Mod));
@@ -47,10 +45,8 @@ namespace SilenceXP
                 m_Setting.UnregisterInOptionsUI();
                 m_Setting = null;
             }
+            Instance = null;
         }
-
-        // for GameSystemBase
-        protected override void OnUpdate() { }
 
         public Setting Setting => m_Setting;
 
@@ -62,7 +58,7 @@ namespace SilenceXP
         static bool PatchedAddMessage(Game.UI.InGame.MilestoneUISystem __instance)
         {
             log.Debug("PatchedAddMessage");
-            var mod = __instance.World.GetExistingSystemManaged<SilenceXP.Mod>();
+            var mod = Mod.Instance;
             if (mod == null) {
                 log.Info("mod does not exist");
                 return true;
